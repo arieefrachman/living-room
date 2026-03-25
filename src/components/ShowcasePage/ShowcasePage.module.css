@@ -1,0 +1,86 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  min-width: var(--min-viewport);
+  background-color: var(--color-bg);
+}
+
+.main {
+  display: grid;
+  /* Viewer takes remaining space; controls panel is fixed width */
+  grid-template-columns: 1fr var(--controls-width);
+  gap: var(--space-5);
+  flex: 1;
+  padding: var(--space-5);
+  min-height: 0; /* allow grid children to shrink */
+}
+
+/* ── Viewer column ───────────────────────────────────────── */
+
+.viewerSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  min-height: 0;
+}
+
+.viewerContainer {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+/* Loading overlay shown while model-viewer initialises */
+.loadingOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(240, 238, 235, 0.85);
+  z-index: var(--z-overlay);
+  border-radius: var(--radius-lg);
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--color-border);
+  border-top-color: var(--color-accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.viewerActions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* ── Controls column ─────────────────────────────────────── */
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  overflow-y: auto;
+}
+
+.controlsPlaceholder {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  text-align: center;
+  margin-top: var(--space-5);
+}

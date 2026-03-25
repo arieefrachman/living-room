@@ -1,7 +1,5 @@
+import ShowcasePage from '@/components/ShowcasePage/ShowcasePage';
+
 export default function Home() {
-  return (
-    <main>
-      <p>3D Chair Showcase — coming soon</p>
-    </main>
-  );
+  return <ShowcasePage />;
 }
