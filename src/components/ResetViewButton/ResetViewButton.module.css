@@ -12,7 +12,7 @@
   cursor: pointer;
   transition: color 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
   /* Minimum 44×44 px accessible touch target */
-  min-height: 36px;
+  min-height: 44px;
 }
 
 .button:hover {

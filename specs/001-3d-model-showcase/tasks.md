@@ -112,12 +112,12 @@
 
 **Purpose**: Constitution-mandated test coverage, accessibility audit, and final validation run. Affects multiple user stories.
 
-- [ ] T032 [P] Create `tests/unit/colorOptions.test.ts` — Vitest tests: (1) `COLOR_OPTIONS` has ≥ 4 items, (2) exactly one item has `isActive === true`, (3) all `hex` values match `/^#[0-9a-fA-F]{3,6}$/`, (4) all `id` values are unique and kebab-case
-- [ ] T033 [P] Create `tests/unit/materialPresets.test.ts` — Vitest tests: (1) `MATERIAL_PRESETS` has ≥ 3 items, (2) exactly one item has `isActive === true`, (3) all `roughness` and `metalness` are within `[0, 1]`, (4) all `thumbnail` paths start with `/textures/`, (5) all `id` values are unique
-- [ ] T034 Create `tests/e2e/showcase.spec.ts` — Playwright E2E tests for US1: (1) page loads and `<model-viewer>` is present in DOM, (2) after `load` event, model is visible (check aria attributes), (3) "Reset view" button is visible and has accessible label, (4) clicking Reset view does not throw
-- [ ] T035 [P] Extend `tests/e2e/showcase.spec.ts` — add Playwright E2E tests for US2: (1) 4 color swatch buttons present, (2) clicking a swatch gives it `aria-pressed="true"` and previous loses it; and for US3: (1) 3 material thumbnail buttons present, (2) clicking a thumbnail gives it `aria-pressed="true"` and previous loses it
-- [ ] T036 [P] Accessibility audit — review all interactive components (`ColorSwatch`, `MaterialThumbnail`, `ResetViewButton`) for `aria-label`, `aria-pressed`, keyboard focus styles, and minimum 44×44 px touch target; fix any gaps in-place
-- [ ] T037 Run quickstart.md validation checklist — follow all steps in [quickstart.md](quickstart.md) in a clean terminal, confirm every manual verification item passes; fix any discrepancies found
+- [X] T032 [P] Create `tests/unit/colorOptions.test.ts` — Vitest tests: (1) `COLOR_OPTIONS` has ≥ 4 items, (2) exactly one item has `isActive === true`, (3) all `hex` values match `/^#[0-9a-fA-F]{3,6}$/`, (4) all `id` values are unique and kebab-case
+- [X] T033 [P] Create `tests/unit/materialPresets.test.ts` — Vitest tests: (1) `MATERIAL_PRESETS` has ≥ 3 items, (2) exactly one item has `isActive === true`, (3) all `roughness` and `metalness` are within `[0, 1]`, (4) all `thumbnail` paths start with `/textures/`, (5) all `id` values are unique
+- [X] T034 Create `tests/e2e/showcase.spec.ts` — Playwright E2E tests for US1: (1) page loads and `<model-viewer>` is present in DOM, (2) after `load` event, model is visible (check aria attributes), (3) "Reset view" button is visible and has accessible label, (4) clicking Reset view does not throw
+- [X] T035 [P] Extend `tests/e2e/showcase.spec.ts` — add Playwright E2E tests for US2: (1) 4 color swatch buttons present, (2) clicking a swatch gives it `aria-pressed="true"` and previous loses it; and for US3: (1) 3 material thumbnail buttons present, (2) clicking a thumbnail gives it `aria-pressed="true"` and previous loses it
+- [X] T036 [P] Accessibility audit — review all interactive components (`ColorSwatch`, `MaterialThumbnail`, `ResetViewButton`) for `aria-label`, `aria-pressed`, keyboard focus styles, and minimum 44×44 px touch target; fix any gaps in-place
+- [X] T037 Run quickstart.md validation checklist — follow all steps in [quickstart.md](quickstart.md) in a clean terminal, confirm every manual verification item passes; fix any discrepancies found
 
 **Checkpoint**: `pnpm test` (Vitest) exits 0. `pnpm test:e2e` (Playwright) exits 0. `pnpm build` outputs clean static bundle. quickstart.md checklist fully passes.
 
