@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import '@google/model-viewer';
 import type { ModelViewerElement } from '@google/model-viewer';
-import type { MaterialPreset } from '@/types';
 import styles from './ModelViewerWrapper.module.css';
 
 export interface ModelViewerWrapperProps {
@@ -13,7 +12,6 @@ export interface ModelViewerWrapperProps {
   onLoad?: () => void;
   onError?: (errorType: string) => void;
   activeColor: string;
-  activeMaterial: MaterialPreset;
   resetTrigger: number;
 }
 
@@ -24,7 +22,6 @@ export default function ModelViewerWrapper({
   onLoad,
   onError,
   activeColor,
-  activeMaterial,
   resetTrigger,
 }: ModelViewerWrapperProps) {
   const viewerRef = useRef<ModelViewerElement>(null);
@@ -42,32 +39,6 @@ export default function ModelViewerWrapper({
     if (!material) return;
     material.pbrMetallicRoughness.setBaseColorFactor(hex);
   }, []);
-
-  const applyMaterial = useCallback(
-    async (viewer: ModelViewerElement, preset: MaterialPreset) => {
-      const material = viewer.model?.materials[0];
-      if (!material) return;
-      const pbr = material.pbrMetallicRoughness;
-
-      pbr.setRoughnessFactor(preset.roughness);
-      pbr.setMetallicFactor(preset.metalness);
-
-      if (preset.textureUrl) {
-        try {
-          const texture = await viewer.createTexture(preset.textureUrl);
-          pbr.baseColorTexture.setTexture(texture);
-        } catch {
-          // Texture failed to load — keep previous texture; color will still apply
-        }
-      } else {
-        pbr.baseColorTexture.setTexture(null);
-      }
-
-      // Re-apply current color tint after material swap (FR-011 no cross-reset)
-      pbr.setBaseColorFactor(activeColorRef.current);
-    },
-    [],
-  );
 
   // Attach load / error event listeners on mount
   useEffect(() => {
@@ -100,12 +71,6 @@ export default function ModelViewerWrapper({
     if (!isLoaded || !viewerRef.current) return;
     applyColor(viewerRef.current, activeColor);
   }, [activeColor, isLoaded, applyColor]);
-
-  // Apply full material preset when activeMaterial changes
-  useEffect(() => {
-    if (!isLoaded || !viewerRef.current) return;
-    applyMaterial(viewerRef.current, activeMaterial);
-  }, [activeMaterial, isLoaded, applyMaterial]);
 
   // Reset camera when resetTrigger increments
   useEffect(() => {
