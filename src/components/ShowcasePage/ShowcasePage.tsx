@@ -4,6 +4,8 @@ import { useState, useCallback, useMemo } from 'react';
 import dynamic from 'next/dynamic';
 import Header from '@/components/Header/Header';
 import ResetViewButton from '@/components/ResetViewButton/ResetViewButton';
+import ColorPicker from '@/components/ColorPicker/ColorPicker';
+import MaterialSelector from '@/components/MaterialSelector/MaterialSelector';
 import { CHAIR_MODEL } from '@/data/chairModel';
 import { COLOR_OPTIONS } from '@/data/colorOptions';
 import { MATERIAL_PRESETS } from '@/data/materialPresets';
@@ -65,14 +67,6 @@ export default function ShowcasePage() {
     setHasError(true);
   }, []);
 
-  // Suppress unused-var warnings for US2/US3 handlers — they will be consumed
-  // when ColorPicker and MaterialSelector are wired up in Phase 4 & 5.
-  void handleColorSelect;
-  void handleMaterialSelect;
-  void colorOptions;
-  void materialPresets;
-  void hasError;
-
   return (
     <div className={styles.page}>
       <Header />
@@ -103,11 +97,10 @@ export default function ShowcasePage() {
           </div>
         </section>
 
-        {/* Right column: controls — ColorPicker and MaterialSelector added in Phase 4 & 5 */}
+        {/* Right column: controls */}
         <aside className={styles.controls} aria-label="Customisation controls">
-          <p className={styles.controlsPlaceholder}>
-            Colour and material controls coming soon.
-          </p>
+          <ColorPicker options={colorOptions} onSelect={handleColorSelect} />
+          <MaterialSelector presets={materialPresets} onSelect={handleMaterialSelect} />
         </aside>
       </main>
     </div>

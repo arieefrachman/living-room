@@ -1,0 +1,26 @@
+.swatch {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  border: 2px solid transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  outline: none;
+}
+
+.swatch:hover {
+  transform: scale(1.1);
+}
+
+.swatch:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+.active {
+  border-color: var(--color-active-ring);
+  box-shadow:
+    0 0 0 3px var(--color-surface),
+    0 0 0 5px var(--color-active-ring);
+}

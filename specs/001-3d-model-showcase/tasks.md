@@ -80,10 +80,10 @@
 
 ### Implementation
 
-- [ ] T024 [US2] Create `src/components/ColorPicker/ColorSwatch.tsx` — `<button>` element; background set to `option.hex`; `aria-label={option.label}`; `aria-pressed={option.isActive}`; active state shows a ring/border, inactive does not; calls `onSelect(option.id)` on click; uses `ColorSwatchProps` interface
-- [ ] T025 [P] [US2] Create `src/components/ColorPicker/ColorPicker.tsx` and `ColorPicker.module.css` — renders a row of `<ColorSwatch>` per `options` entry; section label "Color"; calls `onSelect` forwarded from `ColorPickerProps`; uses `ColorPickerProps` interface
-- [ ] T026 [US2] Update `src/components/ShowcasePage/ShowcasePage.tsx` — add `handleColorSelect(id: string)` that updates `activeColorId` state; derive `activeColorHex` from `COLOR_OPTIONS`; render `<ColorPicker options={colorOptionsWithActiveState} onSelect={handleColorSelect} />` in the controls area; pass `activeColor={activeColorHex}` to `ModelViewerWrapper`
-- [ ] T027 [US2] Verify `activeColor` `useEffect` in `src/components/ModelViewerWrapper/ModelViewerWrapper.tsx` applies `setBaseColorFactor` correctly — confirm composition: after material swap, `activeColor` is re-applied (FR-011 compliance); add `@ts-expect-error` guard for model-viewer Element casting if needed
+- [X] T024 [US2] Create `src/components/ColorPicker/ColorSwatch.tsx` — `<button>` element; background set to `option.hex`; `aria-label={option.label}`; `aria-pressed={option.isActive}`; active state shows a ring/border, inactive does not; calls `onSelect(option.id)` on click; uses `ColorSwatchProps` interface
+- [X] T025 [P] [US2] Create `src/components/ColorPicker/ColorPicker.tsx` and `ColorPicker.module.css` — renders a row of `<ColorSwatch>` per `options` entry; section label "Color"; calls `onSelect` forwarded from `ColorPickerProps`; uses `ColorPickerProps` interface
+- [X] T026 [US2] Update `src/components/ShowcasePage/ShowcasePage.tsx` — add `handleColorSelect(id: string)` that updates `activeColorId` state; derive `activeColorHex` from `COLOR_OPTIONS`; render `<ColorPicker options={colorOptionsWithActiveState} onSelect={handleColorSelect} />` in the controls area; pass `activeColor={activeColorHex}` to `ModelViewerWrapper`
+- [X] T027 [US2] Verify `activeColor` `useEffect` in `src/components/ModelViewerWrapper/ModelViewerWrapper.tsx` applies `setBaseColorFactor` correctly — confirm composition: after material swap, `activeColor` is re-applied (FR-011 compliance); add `@ts-expect-error` guard for model-viewer Element casting if needed
 
 **Checkpoint**: Color swatches visible; clicking each swatch changes the chair color. Active swatch shows visual ring. Switching material and then clicking a color swatch still changes color without resetting material.
 
@@ -99,10 +99,10 @@
 
 ### Implementation
 
-- [ ] T028 [US3] Create `src/components/MaterialSelector/MaterialThumbnail.tsx` — `<button>` element; contains `<img>` from `preset.thumbnail` and `<span>` with `preset.label`; `aria-label={preset.label}`; `aria-pressed={preset.isActive}`; active state shows ring/border; calls `onSelect(preset.id)` on click; uses `MaterialThumbnailProps` interface
-- [ ] T029 [P] [US3] Create `src/components/MaterialSelector/MaterialSelector.tsx` and `MaterialSelector.module.css` — renders a column of `<MaterialThumbnail>` per `presets` entry; section label "Material"; uses `MaterialSelectorProps` interface
-- [ ] T030 [US3] Update `src/components/ShowcasePage/ShowcasePage.tsx` — add `handleMaterialSelect(id: string)` that updates `activeMaterialId` state; derive `activeMaterial: MaterialPreset` from `MATERIAL_PRESETS`; render `<MaterialSelector presets={materialPresetsWithActiveState} onSelect={handleMaterialSelect} />` in the controls area; pass `activeMaterial={activeMaterial}` to `ModelViewerWrapper`
-- [ ] T031 [US3] Verify `activeMaterial` `useEffect` in `src/components/ModelViewerWrapper/ModelViewerWrapper.tsx` — confirm it applies roughness via `setRoughnessFactor`, metalness via `setMetallicFactor`, texture via `viewer.createTexture(url)` → `material.pbrMetallicRoughness.setBaseColorTexture(texture)`, then re-applies current `activeColor` via `setBaseColorFactor` immediately after (FR-011 no cross-reset)
+- [X] T028 [US3] Create `src/components/MaterialSelector/MaterialThumbnail.tsx` — `<button>` element; contains `<img>` from `preset.thumbnail` and `<span>` with `preset.label`; `aria-label={preset.label}`; `aria-pressed={preset.isActive}`; active state shows ring/border; calls `onSelect(preset.id)` on click; uses `MaterialThumbnailProps` interface
+- [X] T029 [P] [US3] Create `src/components/MaterialSelector/MaterialSelector.tsx` and `MaterialSelector.module.css` — renders a column of `<MaterialThumbnail>` per `presets` entry; section label "Material"; uses `MaterialSelectorProps` interface
+- [X] T030 [US3] Update `src/components/ShowcasePage/ShowcasePage.tsx` — add `handleMaterialSelect(id: string)` that updates `activeMaterialId` state; derive `activeMaterial: MaterialPreset` from `MATERIAL_PRESETS`; render `<MaterialSelector presets={materialPresetsWithActiveState} onSelect={handleMaterialSelect} />` in the controls area; pass `activeMaterial={activeMaterial}` to `ModelViewerWrapper`
+- [X] T031 [US3] Verify `activeMaterial` `useEffect` in `src/components/ModelViewerWrapper/ModelViewerWrapper.tsx` — confirm it applies roughness via `setRoughnessFactor`, metalness via `setMetallicFactor`, texture via `viewer.createTexture(url)` → `material.pbrMetallicRoughness.setBaseColorTexture(texture)`, then re-applies current `activeColor` via `setBaseColorFactor` immediately after (FR-011 no cross-reset)
 
 **Checkpoint**: All 3 user stories work together end-to-end. Switching colors and materials in any order composes correctly. No visual corruption during rapid switching.
 
